@@ -6,6 +6,13 @@ __pycache__/
 # C extensions
 *.so
 
+# Permasign related files
+tmp/
+*.p12
+*.ipa
+*.IPA
+*.plist
+
 # Distribution / packaging
 .Python
 build/
