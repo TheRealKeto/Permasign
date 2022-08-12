@@ -5,6 +5,9 @@ description = "Permanently sign any IPA on jailbroken devices"
 authors = ["TheRealKeto <therealketo@gmail.com>"]
 license = "BSD-3-Clause"
 
+[tool.poetry.scripts]
+permasign = "permasign.cli:cli"
+
 [tool.poetry.dependencies]
 python = "^3.9"
 
