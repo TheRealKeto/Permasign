@@ -6,7 +6,8 @@ import subprocess
 
 from .utils import (
     find_tool,
-    find_application,
+    get_app_info,
+    find_application
 )
 from pathlib import Path
 from zipfile import ZipFile
@@ -35,9 +36,11 @@ def permasign(
     with ZipFile(application, "r") as ziparchive:
         ziparchive.extractall(str(tmp))
 
-    # Find the application in temp folder
-    # then, proceed to sign the found app with ldid
+    # Find extracted application in tmp folder
+    # then, sign + change perms of the app with ldid
     found_app = find_application(tmp)
+    app_info = get_app_info(found_app, "CFBundleName")
+
     print(f"[*] Signing {found_app} with ldid")
     subprocess.run([
         str(ldid),
@@ -47,3 +50,5 @@ def permasign(
         "-Upassword",
         str(found_app)
     ])
+    print("[*] Changing permissions...")
+    subprocess.run(["chmod", "0755", found_app / app_info])

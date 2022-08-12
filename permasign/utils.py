@@ -4,6 +4,7 @@
 # Imports
 import sys
 import shutil
+import plistlib
 
 from pathlib import Path
 
@@ -35,3 +36,14 @@ def find_application(where: Path) -> Path:
             found_app = application
 
     return found_app
+
+
+def get_app_info(app_path: Path, info: str) -> None:
+    # For now, this only gets the app's name
+    # TODO: Find a better use case for this...
+
+    # Use the given app path to find what we need
+    with open(f"{app_path}/Info.plist", "rb") as f:
+        app_info = plistlib.load(f)
+
+    return app_info.get(info)
