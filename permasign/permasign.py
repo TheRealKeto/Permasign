@@ -51,4 +51,4 @@ def permasign(
         str(found_app)
     ])
     print("[*] Changing permissions...")
-    subprocess.run(["chmod", "0755", found_app / app_info])
+    (found_app / app_info).chmod(0o755)

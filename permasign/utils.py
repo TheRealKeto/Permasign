@@ -7,9 +7,10 @@ import shutil
 import plistlib
 
 from pathlib import Path
+from typing import Union
 
 
-def find_tool(tool: str) -> str:
+def find_tool(tool: str) -> Union[str, Path]:
     # Check if tool is in PATH
     available = shutil.which(tool)
     if available is not None:
