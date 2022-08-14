@@ -7,9 +7,9 @@
 import argparse
 import permasign
 
-# Create a list of commands
-# This is more flexible and dynamic
-opts_info = [{
+# Create a list of available commands
+# This list is later parsed; much more dynamic
+options = [{
     "flags": ["-p"],
     "args": {
         "type": str,
@@ -35,23 +35,16 @@ opts_info = [{
 
 def cli() -> None:
     # Start by specifying the argument parser
-    # then, set up all available options...
+    # then, set up all available options in parsed args
     parser = argparse.ArgumentParser()
 
-    for option in opts_info:
-        parser.add_argument(
-            *option.get("flags"),
-            **option.get("args")
-        )
+    for option in options:
+        parser.add_argument(*option.get("flags"), **option.get("args"))
 
     args = parser.parse_args()
 
-    # Actuall start signing based on given args
-    permasign.permasign(
-        args.path,
-        args.entitlements,
-        args.certificate
-    )
+    # Actually start signing based on given args
+    permasign.permasign(args.path, args.entitlements, args.certificate)
 
 
 if __name__ == "__main__":

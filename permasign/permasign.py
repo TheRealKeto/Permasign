@@ -15,12 +15,8 @@ from zipfile import ZipFile
 __working_dir = Path(".").resolve()
 
 
-def permasign(
-    ipa_file: str,
-    entitlements: str,
-    certificate: str
-) -> None:
-    # First, find dependencies in PATH or locally
+def permasign(ipa_file: str, entitlements: str, certificate: str) -> None:
+    # First, find dependencies locally or in PATH
     # then, get the path of any given required file
     print("[*] Checking for dependencies...")
     ldid = find_tool("ldid")
@@ -34,12 +30,12 @@ def permasign(
     (tmp := __working_dir / "tmp").mkdir(exist_ok=True)
     print(f"[*] Extracting {application}")
     with ZipFile(application, "r") as ziparchive:
-        ziparchive.extractall(str(tmp))
+        ziparchive.extractall(tmp)
 
     # Find extracted application in tmp folder
     # then, sign + change perms of the app with ldid
     found_app = find_application(tmp)
-    app_info = get_app_info(found_app, "CFBundleName")
+    app_name = get_app_info(found_app, "CFBundleName")
 
     print(f"[*] Signing {found_app} with ldid")
     subprocess.run([
@@ -51,4 +47,4 @@ def permasign(
         str(found_app)
     ])
     print("[*] Changing permissions...")
-    (found_app / app_info).chmod(0o755)
+    (found_app / app_name).chmod(0o755)

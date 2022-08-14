@@ -20,7 +20,7 @@ def find_tool(tool: str) -> Union[str, Path]:
     # Using pathlib, we can check if tool exists
     available = Path(".").resolve() / tool
     if not available.exists():
-        sys.exit(f"Could not find {tool} in PATH or locally")
+        sys.exit(f"Could not find {tool} locally or in PATH")
 
     return available
 
