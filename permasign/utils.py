@@ -39,7 +39,7 @@ def find_application(where: Path) -> Path:
     return found_app
 
 
-def get_app_info(app_path: Path, info: str) -> None:
+def get_app_info(app_path: Path, info: str) -> str:
     # For now, this only gets the app's name
     # TODO: Find a better use case for this...
 
