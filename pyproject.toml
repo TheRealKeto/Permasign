@@ -9,7 +9,7 @@ license = "BSD-3-Clause"
 permasign = "permasign.cli:cli"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^5.0.4"
