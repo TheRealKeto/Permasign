@@ -14,21 +14,21 @@ options = [{
     "args": {
         "type": str,
         "dest": "path",
-        "help": "Specify path of local iPA"
+        "help": "specify path of local iPA"
     }
 }, {
     "flags": ["-e"],
     "args": {
         "type": str,
         "dest": "entitlements",
-        "help": "Specify path of entitlements"
+        "help": "specify path of entitlements"
     }
 }, {
     "flags": ["-k"],
     "args": {
         "type": str,
         "dest": "certificate",
-        "help": "Specify path of certificate"
+        "help": "specify path of certificate"
     }
 }]
 

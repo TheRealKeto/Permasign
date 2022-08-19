@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "permasign"
-version = "1.0"
+version = "1.0.0"
 description = "Permanently sign any IPA on jailbroken devices"
 authors = ["TheRealKeto <therealketo@gmail.com>"]
 license = "BSD-3-Clause"
