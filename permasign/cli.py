@@ -14,21 +14,24 @@ options = [{
     "args": {
         "type": str,
         "dest": "path",
-        "help": "specify path of local iPA"
+        "required": True,
+        "help": "specify local path of the IPA to be signed",
     }
 }, {
     "flags": ["-e"],
     "args": {
         "type": str,
         "dest": "entitlements",
-        "help": "specify path of entitlements"
+        "required": True,
+        "help": "specify entitlements that will be applied"
     }
 }, {
     "flags": ["-k"],
     "args": {
         "type": str,
         "dest": "certificate",
-        "help": "specify path of certificate"
+        "required": True,
+        "help": "specify root cerficiate to use"
     }
 }]
 
