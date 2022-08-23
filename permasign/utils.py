@@ -7,7 +7,10 @@ import shutil
 import plistlib
 
 from pathlib import Path
-from typing import Union
+from typing import (
+    Any,
+    Union
+)
 
 
 def find_tool(tool: str) -> Union[str, Path]:
@@ -39,7 +42,7 @@ def find_application(where: Path) -> Path:
     return found_app
 
 
-def get_app_info(app_path: Path, info: str) -> str:
+def get_app_info(app_path: Path, info: str) -> Any:
     # For now, this only gets the app's name
     # TODO: Find a better use case for this...
 
