@@ -10,10 +10,10 @@ import permasign
 # Create a list of available commands
 # This list is later parsed; much more dynamic
 options = [{
-    "flags": ["-p"],
+    "flags": ["-i", "--ipa"],
     "args": {
         "type": str,
-        "dest": "path",
+        "dest": "ipa",
         "required": True,
         "help": "specify local path of the IPA to be signed",
     }
@@ -47,7 +47,7 @@ def cli() -> None:
     args = parser.parse_args()
 
     # Actually start signing based on given args
-    permasign.permasign(args.path, args.entitlements, args.certificate)
+    permasign.permasign(args.ipa, args.entitlements, args.certificate)
 
 
 if __name__ == "__main__":

@@ -9,9 +9,8 @@ __pycache__/
 # Permasign related files
 tmp/
 *.p12
-*.ipa
-*.IPA
 *.plist
+*.[Ii][Pp][Aa]
 
 # Distribution / packaging
 .Python
