@@ -18,10 +18,10 @@ pyright = "^1.1.268"
 
 [tool.pyright]
 ignore = [
-	"dist",
-	"env",
-	"**/__pycache__",
-	"permasign/cli.py"
+    "dist",
+    "env",
+    "**/__pycache__",
+    "permasign/cli.py"
 ]
 pythonVersion = "3.8"
 

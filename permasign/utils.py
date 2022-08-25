@@ -36,8 +36,7 @@ def find_application(where: Path) -> Path:
     if not (app_path := where / "Payload").exists():
         sys.exit("Could not find application bundle.")
 
-    # Get the app bundle files without cycling
-    # There should be no need to loop through these
+    # Cycle through all the files until we find the right one
     found_app = [app for app in app_path.iterdir()]
     return next(iter(found_app))
 

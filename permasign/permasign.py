@@ -20,9 +20,9 @@ def permasign(ipa_file: str, ents: str, cert: str) -> None:
     ldid = find_tool("ldid")
 
     working_dir = Path(".").resolve()
-    application: Path = working_dir / ipa_file
-    entitlements: Path = working_dir / ents
-    certificate: Path = working_dir / cert
+    application = working_dir / ipa_file
+    entitlements = working_dir / ents
+    certificate = working_dir / cert
 
     # Create a temp folder to keep things clean
     # then, extract the given IPA file to it...
