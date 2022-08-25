@@ -10,6 +10,7 @@ __pycache__/
 tmp/
 *.p12
 *.plist
+*.[Ee][Xx][Ee]
 *.[Ii][Pp][Aa]
 
 # Distribution / packaging

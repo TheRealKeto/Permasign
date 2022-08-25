@@ -17,8 +17,13 @@ flake8 = "^5.0.4"
 pyright = "^1.1.268"
 
 [tool.pyright]
+ignore = [
+	"dist",
+	"env",
+	"**/__pycache__",
+	"permasign/cli.py"
+]
 pythonVersion = "3.8"
-exclude = ["permasign/cli.py"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
