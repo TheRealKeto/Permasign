@@ -4,7 +4,9 @@
 # Imports
 import sys
 import shutil
+
 import plistlib
+import pkg_resources
 
 from pathlib import Path
 from typing import (
@@ -51,3 +53,16 @@ def get_app_info(app_path: Path, info: str) -> Any:
         app_info = plistlib.load(f)
 
     return app_info.get(info)
+
+
+def get_version() -> str:
+    # Get the version of the installed package
+    # This's specific to the value used by Poetry
+    try:
+        version = pkg_resources.get_distribution("permasign").version
+    # Return a dummy version if the package doesn't exist
+    # TODO: Add the git hash when using a developer version
+    except pkg_resources.DistributionNotFound:
+        version = "0, from archive/source"
+
+    return version
