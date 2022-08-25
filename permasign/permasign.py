@@ -13,16 +13,16 @@ from pathlib import Path
 from zipfile import ZipFile
 
 
-def permasign(ipa_file: str, entitlements: str, certificate: str) -> None:
+def permasign(ipa_file: str, ents: str, cert: str) -> None:
     # First, find dependencies locally or in PATH
     # then, get the path of any given required file
     print("[*] Checking for dependencies...")
     ldid = find_tool("ldid")
 
     working_dir = Path(".").resolve()
-    application = working_dir / ipa_file
-    entitlements = working_dir / entitlements
-    certificate = working_dir / certificate
+    application: Path = working_dir / ipa_file
+    entitlements: Path = working_dir / ents
+    certificate: Path = working_dir / cert
 
     # Create a temp folder to keep things clean
     # then, extract the given IPA file to it...

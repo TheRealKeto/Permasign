@@ -14,6 +14,11 @@ python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^5.0.4"
+pyright = "^1.1.268"
+
+[tool.pyright]
+pythonVersion = "3.8"
+exclude = ["permasign/cli.py"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

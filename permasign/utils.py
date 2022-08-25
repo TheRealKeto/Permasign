@@ -34,14 +34,12 @@ def find_application(where: Path) -> Path:
     # Check if the temporary Payload folder exists
     # If not, then it's likely not extracted (?)
     if not (app_path := where / "Payload").exists():
-        sys.exit("Could not find application files.")
+        sys.exit("Could not find application bundle.")
 
-    # Cycle through all the files until we find the right one
-    for application in app_path.iterdir():
-        if str(application).endswith(".app"):
-            found_app = application
-
-    return found_app
+    # Get the app bundle files without cycling
+    # There should be no need to loop through these
+    found_app = [app for app in app_path.iterdir()]
+    return next(iter(found_app))
 
 
 def get_app_info(app_path: Path, info: str) -> Any:
