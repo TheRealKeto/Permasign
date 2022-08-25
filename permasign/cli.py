@@ -33,6 +33,12 @@ options = [{
         "required": True,
         "help": "specify root cerficiate to use"
     }
+}, {
+    "flags": ["-V", "--version"],
+    "args": {
+        "action": "version",
+        "version": permasign.__version__
+    }
 }]
 
 
