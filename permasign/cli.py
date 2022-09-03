@@ -10,6 +10,12 @@ import permasign
 # Create a list of available commands
 # This list is later parsed; much more dynamic
 options = [{
+    "flags": ["-V", "--version"],
+    "args": {
+        "action": "version",
+        "version": permasign.__version__
+    }
+}, {
     "flags": ["-i", "--ipa"],
     "args": {
         "type": str,
@@ -34,11 +40,12 @@ options = [{
         "help": "specify root cerficiate to use"
     }
 }, {
-    "flags": ["-V", "--version"],
-    "args": {
-        "action": "version",
-        "version": permasign.__version__
-    }
+   "flags": ["-z", "--zip"],
+   "args": {
+        "dest": "zip_after",
+        "action": "store_true",
+        "help": "zip app bundle after signinig"
+   }
 }]
 
 
@@ -53,7 +60,12 @@ def cli() -> None:
     args = parser.parse_args()
 
     # Actually start signing based on given args
-    permasign.permasign(args.ipa, args.entitlements, args.certificate)
+    permasign.permasign(
+        args.ipa,
+        args.entitlements,
+        args.certificate,
+        zip_after=args.zip_after
+    )
 
 
 if __name__ == "__main__":

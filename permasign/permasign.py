@@ -13,7 +13,13 @@ from pathlib import Path
 from zipfile import ZipFile
 
 
-def permasign(ipa_file: str, ents: str, cert: str) -> None:
+def permasign(
+    ipa_file: str,
+    ents: str,
+    cert: str,
+    *,
+    zip_after: bool = False
+) -> None:
     # First, find dependencies locally or in PATH
     # then, get the path of any given required file
     print("[*] Checking for dependencies...")
@@ -49,12 +55,13 @@ def permasign(ipa_file: str, ents: str, cert: str) -> None:
     (found_app / app_name).chmod(0o755)
 
     # Archive the signed bundle as a zip archive
-    # then, print a finishing message to the user
-    print("[*] Zipping signed app bundle...")
-    appzip_file = tmp / f"{app_name}.zip"
-    with ZipFile(appzip_file, "w") as appzip:
-        for app_file in found_app.rglob("*"):
-            arcname = app_file.relative_to(found_app)
-            appzip.write(app_file, arcname)
+    # This is only done if the user decided to do so
+    if zip_after is not False:
+        print("[*] Zipping signed app bundle...")
+        appzip_file = tmp / f"{app_name}.zip"
+        with ZipFile(appzip_file, "w") as appzip:
+            for app_file in found_app.rglob("*"):
+                arcname = app_file.relative_to(found_app)
+                appzip.write(app_file, arcname)
 
     print(f"Correctly permasigned {application}!")
