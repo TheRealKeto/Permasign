@@ -16,6 +16,7 @@
 .Op Fl i , -ipa Ar FILE
 .Op Fl e , -entitlements Ar ENTS
 .Op Fl k , -certificate Ar CERT
+.Op Fl z , -zip
 .Sh DESCRIPTION
 .Nm permasign
 is a command-line interface, that also functions as a library,
@@ -85,6 +86,15 @@ refers to the certificate that
 .Xr ldid 1
 will use when signing the app bundle of the given iOS app.
 This option is required.
+.It Fl z , -zip
+Create an archive of the signed iOS app bundle.
+.Pp
+When used,
+.Nm permasign
+will create a ZIP archive of the extracted app bundle after
+it has been signed by
+.Xr ldid 1 .
+This behavior is optional.
 .El
 .Sh SEE ALSO
 .Xr ldid 1
