@@ -1,0 +1,112 @@
+.\"
+.\" permasign.1
+.\" Copyright (c) 2022 TheRealKeto
+.\"
+.\" SPDX-License-Identifier: BSD-3-Clause
+.\" Created by TheRealKeto on 9/2/2022.
+.\"
+.\"
+.Dd September 2, 2022
+.Dt PERMASIGN 1
+.Os
+.Sh NAME
+.Nm permasign
+.Nd Permanently sign any iOS app
+.Sh SYNOPSIS
+.Nm permasign
+.Op Fl i , -ipa Ar FILE
+.Op Fl e , -entitlements Ar ENTS
+.Op Fl k , -certificate Ar CERT
+.Sh DESCRIPTION
+.Nm permasign
+is a command-line interface, that also functions as a library,
+that utilizes
+.Xr ldid 1
+in order to permanently sign any iOS app on jailbroken devices.
+.Pp
+Due to a bug within CoreTrust found by
+.An Linus Henze
+& exploited by
+.An zhowei ,
+it's possible to permanently sign any iOS (as well as macOS)
+app, bypassing the common 7-day period assigned to any iOS app
+when sideloading it with a non-developer Apple account.
+.Pp
+Sadly, this command-line interface does not work for normal iOS
+devices, as the target device (the device where you want to install
+any permanently signed iOS app), as well as the host device must
+be jailbroken.
+This is due to the fact that, after using
+.Nm permasign ,
+you're still required to put the signed app bundle within the
+Application folder in the root of the device's filesystem.
+.Pp
+The following options are supported by
+.Nm permasign :
+.Bl -tag -width -indent
+.It Fl h , -help
+Print a synopsis and all available commands.
+.It Fl V , -version
+Print the current version of
+.Nm permasign .
+.It Fl i , -ipa Ar FILE
+Specify the path of the iOS app you want to sign.
+.Pp
+.Ar FILE
+refers to the iOS app you want to sign, which can be a direct
+path to any iOS app within your system.
+This option is required.
+.Pp
+Once the given
+.Ar FILE
+is signed with
+.Xr ldid 1 ,
+.Nm permasign
+will bundle it in a ZIP archive.
+The created archive contains the signed app bundle, which can
+be moved to the Applications folder (/Applications) in order
+for it to be shown on your homescreen.
+.It Fl e , -entitlements Ar ENTS
+Specify entitlements that
+.Xr ldid 1
+should apply when signing.
+.Pp
+.Ar ENTS
+refers to any file in XML format (.xml, .plist) that contains
+any entitlements that
+.Xr ldid 1
+will apply after the app bundle is extracted from the given
+iOS app.
+This option is required.
+.It Fl k , -certificate Ar CERT
+Local certificate that permanently signs the given iOS app.
+.Pp
+.Ar CERT
+refers to the certificate that
+.Xr ldid 1
+will use when signing the app bundle of the given iOS app.
+This option is required.
+.El
+.Sh SEE ALSO
+.Xr ldid 1
+.Sh HISTORY
+.Nm permasign
+is an alternative project that somewhat rivals
+.Nm permasigner ,
+which was written by
+.An nebula (itsnebulalol) .
+.Pp
+.Nm permasign
+is a side project meant to have a much cleaner code base than
+.Nm permasigner ,
+and while it's not as extensive as its alternatives, it attempts
+to provide a product without many dependencies.
+.Nm permasign
+only depends on
+.Xr ldid 1 ,
+specifically distributed by the
+.An Procursus Team Aq Mt support@procurs.us .
+.Sh AUTHORS
+.Nm permasign
+was written with the Python Programming Language by
+.An TheRealKeto Aq Mt therealketo@gmail.com .
