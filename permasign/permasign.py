@@ -64,4 +64,4 @@ def permasign(
                 arcname = app_file.relative_to(found_app)
                 appzip.write(app_file, arcname)
 
-    print(f"Correctly permasigned {application}!")
+    print(f"Successfully permasigned {application}!")
