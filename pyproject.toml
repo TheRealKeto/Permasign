@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "permasign"
 version = "1.0.0"
-description = "Permanently sign any IPA on jailbroken devices"
+description = "A small library to permanently sign any app on jailbroken iOS"
 authors = ["TheRealKeto <therealketo@gmail.com>"]
 license = "BSD-3-Clause"
 repository = "https://github.com/TheRealKeto/Permasign"
@@ -14,8 +14,15 @@ permasign = "permasign.cli:cli"
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
+mypy = "^0.971"
 flake8 = "^5.0.4"
 pyright = "^1.1.268"
+
+[tool.mypy]
+python_version = "3.8"
+exclude = [
+    "permasign/cli.py"
+]
 
 [tool.pyright]
 ignore = [
