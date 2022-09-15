@@ -56,7 +56,7 @@ def get_version() -> str:
     # Get the version of the installed package
     # This's specific to the value used by Poetry
     try:
-        version = pkg_resources.get_distribution("permasign").version
+        version = pkg_resources.get_distribution(__package__).version
     # Return a dummy version if the package doesn't exist
     # TODO: Add the git hash when using a developer version
     except pkg_resources.DistributionNotFound:
