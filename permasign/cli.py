@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-#
 # Permasign (cli.py)
 # Command-line interface for Permasign
 
