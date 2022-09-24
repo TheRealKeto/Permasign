@@ -5,7 +5,9 @@ description = "A small library to permanently sign any app on jailbroken iOS"
 authors = ["TheRealKeto <therealketo@gmail.com>"]
 license = "BSD-3-Clause"
 repository = "https://github.com/TheRealKeto/Permasign"
-include = ["permasign.1"]
+include = [
+  {path = "permasign.1", format = "sdist"}
+]
 
 [tool.poetry.scripts]
 permasign = "permasign.cli:cli"
@@ -20,16 +22,14 @@ pyright = "^1.1.268"
 
 [tool.mypy]
 python_version = "3.8"
-exclude = [
-    "permasign/cli.py"
-]
+exclude = ["permasign/cli.py"]
 
 [tool.pyright]
 ignore = [
-    "dist",
-    "env",
-    "**/__pycache__",
-    "permasign/cli.py"
+  "dist",
+  "env",
+  "**/__pycache__",
+  "permasign/cli.py"
 ]
 pythonVersion = "3.8"
 
