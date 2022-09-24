@@ -2,15 +2,15 @@
 # Sign any application, permanently
 
 # Imports
+import pathlib
 import subprocess
 
+from zipfile import ZipFile
 from .utils import (
     find_tool,
     get_app_info,
     find_application
 )
-from pathlib import Path
-from zipfile import ZipFile
 
 
 def permasign(
@@ -25,7 +25,7 @@ def permasign(
     print("[*] Checking for dependencies...")
     ldid = find_tool("ldid")
 
-    working_dir = Path(".").resolve()
+    working_dir = pathlib.Path(".").resolve()
     application = working_dir / ipa_file
     entitlements = working_dir / ents
     certificate = working_dir / cert
@@ -56,12 +56,13 @@ def permasign(
 
     # Archive the signed bundle as a zip archive
     # This is only done if the user decided to do so
-    if zip_after is not False:
+    if zip_after:
         print("[*] Zipping signed app bundle...")
+        app_rpath = tmp / "Payload"
         appzip_file = tmp / f"{app_name}.zip"
         with ZipFile(appzip_file, "w") as appzip:
             for app_file in found_app.rglob("*"):
-                arcname = app_file.relative_to(found_app)
+                arcname = app_file.relative_to(app_rpath)
                 appzip.write(app_file, arcname)
 
     print(f"Successfully permasigned {application}!")
