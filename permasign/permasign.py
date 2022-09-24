@@ -2,6 +2,7 @@
 # Sign any application, permanently
 
 # Imports
+import shutil
 import pathlib
 import subprocess
 
@@ -64,5 +65,9 @@ def permasign(
             for app_file in found_app.rglob("*"):
                 arcname = app_file.relative_to(app_rpath)
                 appzip.write(app_file, arcname)
+
+        # As an extra measure, let's clean up
+        # Using shutil is the only to do it, sadly
+        shutil.rmtree(app_rpath, ignore_errors=True)
 
     print(f"Successfully permasigned {application}!")
