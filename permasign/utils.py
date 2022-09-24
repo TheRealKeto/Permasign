@@ -5,17 +5,17 @@
 import sys
 import shutil
 
+import pathlib
 import plistlib
-import pkg_resources
 
-from pathlib import Path
+from importlib import metadata
 from typing import (
     Any,
     Union
 )
 
 
-def find_tool(tool: str) -> Union[str, Path]:
+def find_tool(tool: str) -> Union[str, pathlib.Path]:
     # Check if tool is in PATH
     available = shutil.which(tool)
     if available is not None:
@@ -23,14 +23,14 @@ def find_tool(tool: str) -> Union[str, Path]:
 
     # If tool is not in PATH, check working dir
     # Using pathlib, we can check if tool exists
-    available_local = Path(".").resolve() / tool
+    available_local = pathlib.Path(".").resolve() / tool
     if not available_local.exists():
         sys.exit(f"Could not find {tool} locally or in PATH")
 
     return available or available_local
 
 
-def find_application(where: Path) -> Path:
+def find_application(where: pathlib.Path) -> pathlib.Path:
     # Check if the temporary Payload folder exists
     # If not, then it's likely not extracted (?)
     if not (app_path := where / "Payload").exists():
@@ -41,7 +41,7 @@ def find_application(where: Path) -> Path:
     return next(iter(found_app))
 
 
-def get_app_info(app_path: Path, info: str) -> Any:
+def get_app_info(app_path: pathlib.Path, info: str) -> Any:
     # For now, this only gets the app's name
     # TODO: Find a better use case for this...
 
@@ -56,10 +56,10 @@ def get_version() -> str:
     # Get the version of the installed package
     # This's specific to the value used by Poetry
     try:
-        version = pkg_resources.get_distribution(__package__).version
+        version = metadata.version(__package__)
     # Return a dummy version if the package doesn't exist
     # TODO: Add the git hash when using a developer version
-    except pkg_resources.DistributionNotFound:
+    except metadata.PackageNotFoundError:
         version = "0, from archive/source"
 
     return version
