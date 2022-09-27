@@ -5,7 +5,7 @@
 .\" SPDX-License-Identifier: BSD-3-Clause
 .\" Created by TheRealKeto on 9/2/2022.
 .\"
-.Dd September 2, 2022
+.Dd September 27, 2022
 .Dt PERMASIGN 1
 .Os
 .Sh NAME
@@ -13,33 +13,35 @@
 .Nd Permanently sign any iOS app
 .Sh SYNOPSIS
 .Nm permasign
-.Op Fl i , -ipa Ar FILE
-.Op Fl e , -entitlements Ar ENTS
-.Op Fl k , -certificate Ar CERT
+.Fl i , -ipa Ar FILE
+.Fl e , -entitlements Ar ENTS
+.Fl k , -certificate Ar CERT
 .Op Fl z , -zip
 .Sh DESCRIPTION
 .Nm permasign
 is a command-line interface, that also functions as a library,
-that utilizes
+which utilizes
 .Xr ldid 1
-in order to permanently sign any iOS app on jailbroken devices.
+in order to permanently sign any iOS app.
 .Pp
 Due to a bug within CoreTrust found by
 .An Linus Henze
 & exploited by
 .An zhowei ,
 it's possible to permanently sign any iOS (as well as macOS)
-app, bypassing the common 7-day period assigned to any iOS app
-when sideloading it with a non-developer Apple account.
+app, bypassing the common 7-day period assigned to any
+application when sideloading it with a non-developer Apple
+account.
 .Pp
-Sadly, this command-line interface does not work for normal iOS
-devices, as the target device (the device where you want to install
-any permanently signed iOS app), as well as the host device must
+Sadly, only several individuals are capable of taking advantage
+of this command-line interface, as the target device (the device
+where you want to install any permanently signed iOS app) must
 be jailbroken.
 This is due to the fact that, after using
 .Nm permasign ,
 you're still required to put the signed app bundle within the
-Application folder in the root of the device's filesystem.
+Applications folder in the root of the device's filesystem, which
+non-jailbroken iOS does not provide access to.
 .Pp
 The following options are supported by
 .Nm permasign :
@@ -54,7 +56,7 @@ Specify the path of the iOS app you want to sign.
 .Pp
 .Ar FILE
 refers to the iOS app you want to sign, which can be a direct
-path to any iOS app within your system.
+path to any iOS app (.ipa) within your system.
 This option is required.
 .Pp
 Once the given
@@ -62,7 +64,7 @@ Once the given
 is signed with
 .Xr ldid 1 ,
 .Nm permasign
-will bundle it in a ZIP archive.
+will optionally bundle it in a ZIP archive.
 The created archive contains the signed app bundle, which can
 be moved to the Applications folder (/Applications) in order
 for it to be shown on your homescreen.
@@ -97,7 +99,8 @@ it has been signed by
 This behavior is optional.
 .El
 .Sh SEE ALSO
-.Xr ldid 1
+.Xr ldid 1 ,
+.Xr uicache 1
 .Sh HISTORY
 .Nm permasign
 is an alternative project that somewhat rivals
@@ -106,10 +109,11 @@ which was written by
 .An nebula (itsnebulalol) .
 .Pp
 .Nm permasign
-is a side project meant to have a much cleaner code base than
+is a side project meant to have a much cleaner codebase than
 .Nm permasigner ,
 and while it's not as extensive as its alternatives, it attempts
-to provide a product without many dependencies.
+to provide a product without many dependencies while also being
+entirely multiplatform.
 .Nm permasign
 only depends on
 .Xr ldid 1 ,
