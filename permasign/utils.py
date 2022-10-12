@@ -15,7 +15,7 @@ from typing import (
 )
 
 
-def find_tool(tool: str) -> Union[str, pathlib.Path]:
+def find_tool(tool: str, /) -> Union[str, pathlib.Path]:
     # Check if tool is in PATH
     available = shutil.which(tool)
     if available is not None:
@@ -30,7 +30,7 @@ def find_tool(tool: str) -> Union[str, pathlib.Path]:
     return available or available_local
 
 
-def find_application(where: pathlib.Path) -> pathlib.Path:
+def find_application(where: pathlib.Path, /) -> pathlib.Path:
     # Check if the temporary Payload folder exists
     # If not, then it's likely not extracted (?)
     if not (app_path := where / "Payload").exists():
@@ -41,7 +41,7 @@ def find_application(where: pathlib.Path) -> pathlib.Path:
     return next(iter(found_app))
 
 
-def get_app_info(app_path: pathlib.Path, info: str) -> Any:
+def get_app_info(app_path: pathlib.Path, info: str, /) -> Any:
     # For now, this only gets the app's name
     # TODO: Find a better use case for this...
 
