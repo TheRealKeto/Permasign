@@ -13,6 +13,9 @@ tmp/
 *.[Ee][Xx][Ee]
 *.[Ii][Pp][Aa]
 
+Visual Studio Code
+.vscode/
+
 # Distribution / packaging
 .Python
 build/
