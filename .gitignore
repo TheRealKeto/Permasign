@@ -13,7 +13,7 @@ tmp/
 *.[Ee][Xx][Ee]
 *.[Ii][Pp][Aa]
 
-Visual Studio Code
+# Visual Studio Code
 .vscode/
 
 # Distribution / packaging

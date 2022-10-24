@@ -5,7 +5,7 @@
 .\" SPDX-License-Identifier: BSD-3-Clause
 .\" Created by TheRealKeto on 9/2/2022.
 .\"
-.Dd September 27, 2022
+.Dd October 24, 2022
 .Dt PERMASIGN 1
 .Os
 .Sh NAME
@@ -113,7 +113,7 @@ is a side project meant to have a much cleaner codebase than
 .Nm permasigner ,
 and while it's not as extensive as its alternatives, it attempts
 to provide a product without many dependencies while also being
-entirely multiplatform.
+entirely multi-platform.
 .Nm permasign
 only depends on
 .Xr ldid 1 ,
@@ -123,3 +123,8 @@ specifically distributed by the
 .Nm permasign
 was written with the Python Programming Language by
 .An TheRealKeto Aq Mt therealketo@gmail.com .
+.Sh BUGS
+With the
+.Fl k , -certificate
+flag, certificates whose passphrase is anything other than
+"password" will not be accepted.
