@@ -5,9 +5,15 @@
 import argparse
 import permasign
 
+from typing import (
+    Any,
+    List,
+    Dict
+)
+
 # Create a list of available commands
 # This list is later parsed; much more dynamic
-options = [{
+options: List[Dict[str, Any]]= [{
     "flags": ["-V", "--version"],
     "args": {
         "action": "version",
@@ -53,11 +59,13 @@ def cli() -> None:
     parser = argparse.ArgumentParser()
 
     for option in options:
-        parser.add_argument(*option.get("flags"), **option.get("args"))
+        parser.add_argument(
+            *option.get("flags"),  # type: ignore
+            **option.get("args")  # type: ignore
+        )
 
+    # Parse arguments, then start signing!
     args = parser.parse_args()
-
-    # Actually start signing based on given args
     permasign.permasign(
         args.ipa,
         args.entitlements,

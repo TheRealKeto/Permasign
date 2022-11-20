@@ -20,14 +20,12 @@ pyright = "^1.1.280"
 
 [tool.mypy]
 python_version = "3.8"
-exclude = ["permasign/cli.py"]
 
 [tool.pyright]
 ignore = [
    "dist",
    "env",
-   "**/__pycache__",
-   "permasign/cli.py"
+   "**/__pycache__"
 ]
 pythonVersion = "3.8"
 
