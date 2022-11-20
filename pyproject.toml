@@ -14,9 +14,9 @@ permasign = "permasign.cli:cli"
 python = "^3.8"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^0.971"
+mypy = "^0.991"
 flake8 = "^5.0.4"
-pyright = "^1.1.274"
+pyright = "^1.1.280"
 
 [tool.mypy]
 python_version = "3.8"
