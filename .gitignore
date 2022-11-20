@@ -8,9 +8,9 @@ __pycache__/
 
 # Permasign related files
 tmp/
+ldid*
 *.p12
 *.plist
-*.[Ee][Xx][Ee]
 *.[Ii][Pp][Aa]
 
 # Visual Studio Code
