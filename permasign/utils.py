@@ -27,7 +27,7 @@ def find_tool(tool: str, /) -> Union[str, pathlib.Path]:
     if not available_local.exists():
         sys.exit(f"Could not find {tool} locally or in PATH")
 
-    return available or available_local
+    return available_local
 
 
 def find_application(where: pathlib.Path, /) -> pathlib.Path:
@@ -58,7 +58,6 @@ def get_version() -> str:
     try:
         version = metadata.version(__package__)
     # Return a dummy version if the package doesn't exist
-    # TODO: Add the git hash when using a developer version
     except metadata.PackageNotFoundError:
         version = "0, from archive/source"
 
