@@ -1,76 +1,31 @@
 # Permasign (cli.py)
 # Command-line interface for Permasign
 
-# Imports
-import argparse
+"""Usage: permasign [-h] [-V] -i IPA -e ENTS -k CERT [-z]
+
+Options:
+  -h, --help         Show this screen.
+  -V, --version      Show version.
+  -i, --ipa IPA      Set IPA file to be signed.
+  -e, --ents ENTS    Specify entitlements to be applied.
+  -k, --cert CERT    Specify certificate to use when signing.
+  -z, --zip          Zip app bundle after signing.
+
+"""
+
 import permasign
 
-from typing import (
-    Any,
-    List,
-    Dict
-)
-
-# Create a list of available commands
-# This list is later parsed; much more dynamic
-options: List[Dict[str, Any]]= [{
-    "flags": ["-V", "--version"],
-    "args": {
-        "action": "version",
-        "version": permasign.__version__
-    }
-}, {
-    "flags": ["-i", "--ipa"],
-    "args": {
-        "type": str,
-        "dest": "ipa",
-        "required": True,
-        "help": "specify local path of the IPA to be signed",
-    }
-}, {
-    "flags": ["-e"],
-    "args": {
-        "type": str,
-        "dest": "entitlements",
-        "required": True,
-        "help": "specify entitlements that will be applied"
-    }
-}, {
-    "flags": ["-k"],
-    "args": {
-        "type": str,
-        "dest": "certificate",
-        "required": True,
-        "help": "specify root cerficiate to use"
-    }
-}, {
-   "flags": ["-z", "--zip"],
-   "args": {
-        "dest": "zip_after",
-        "action": "store_true",
-        "help": "zip app bundle after signinig"
-   }
-}]
+from docopt import docopt
 
 
 def cli() -> None:
-    # Start by specifying the argument parser
-    # then, set up all available options in parsed args
-    parser = argparse.ArgumentParser()
+    args = docopt(__doc__, version=permasign.__version__)
 
-    for option in options:
-        parser.add_argument(
-            *option.get("flags"),  # type: ignore
-            **option.get("args")  # type: ignore
-        )
-
-    # Parse arguments, then start signing!
-    args = parser.parse_args()
     permasign.permasign(
-        args.ipa,
-        args.entitlements,
-        args.certificate,
-        zip_after=args.zip_after
+        args.get("--ipa"),
+        args.get("--ents"),
+        args.get("--cert"),
+        zip_after=args.get("--zip")
     )
 
 

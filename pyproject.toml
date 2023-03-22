@@ -12,6 +12,7 @@ permasign = "permasign.cli:cli"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+docopt = "^0.6.2"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^0.991"
