@@ -21,12 +21,12 @@ from docopt import docopt
 def cli() -> None:
     args = docopt(__doc__, version=permasign.__version__)
 
-    permasign.permasign(
-        args.get("--ipa"),
-        args.get("--ents"),
-        args.get("--cert"),
-        zip_after=args.get("--zip")
-    )
+    ipa = args["--ipa"]
+    ents = args["--ents"]
+    cert = args["--cert"]
+    z_after = args["--zip"]
+
+    permasign.permasign(ipa, ents, cert, zip_after=z_after)
 
 
 if __name__ == "__main__":
