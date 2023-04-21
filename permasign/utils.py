@@ -46,7 +46,7 @@ def get_app_info(app_path: pathlib.Path, info: str, /) -> Any:
     # TODO: Find a better use case for this...
 
     # Use the given app path to find what we need
-    with open(f"{app_path}/Info.plist", "rb") as f:
+    with (app_path / "Info.plist").open("rb") as f:
         app_info = plistlib.load(f)
 
     return app_info.get(info)

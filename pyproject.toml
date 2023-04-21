@@ -40,7 +40,8 @@ select = [
    "F",
    "W",
    "N",
-   "Q"
+   "Q",
+   "PTH"
 ]
 line-length = 65
 show-source = true
