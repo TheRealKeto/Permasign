@@ -5,7 +5,7 @@
 .\" SPDX-License-Identifier: BSD-3-Clause
 .\" Created by TheRealKeto on 9/2/2022.
 .\"
-.Dd October 24, 2022
+.Dd April 21, 2022
 .Dt PERMASIGN 1
 .Os
 .Sh NAME
@@ -14,8 +14,8 @@
 .Sh SYNOPSIS
 .Nm permasign
 .Fl i , -ipa Ar FILE
-.Fl e , -entitlements Ar ENTS
-.Fl k , -certificate Ar CERT
+.Fl e , -ents Ar ENTS
+.Fl k , -cert Ar CERT
 .Op Fl z , -zip
 .Sh DESCRIPTION
 .Nm permasign
@@ -68,7 +68,7 @@ will optionally bundle it in a ZIP archive.
 The created archive contains the signed app bundle, which can
 be moved to the Applications folder (/Applications) in order
 for it to be shown on your homescreen.
-.It Fl e , -entitlements Ar ENTS
+.It Fl e , -ents Ar ENTS
 Specify entitlements that
 .Xr ldid 1
 should apply when signing.
@@ -80,7 +80,7 @@ any entitlements that
 will apply after the app bundle is extracted from the given
 iOS app.
 This option is required.
-.It Fl k , -certificate Ar CERT
+.It Fl k , -cert Ar CERT
 Local certificate that permanently signs the given iOS app.
 .Pp
 .Ar CERT
@@ -112,10 +112,11 @@ which was written by
 is a side project meant to have a much cleaner codebase than
 .Nm permasigner ,
 and while it's not as extensive as its alternatives, it attempts
-to provide a product without many dependencies while also being
+to provide a product that is lightweight while also being
 entirely multi-platform.
+.Pp
 .Nm permasign
-only depends on
+depends on
 .Xr ldid 1 ,
 specifically distributed by the
 .An Procursus Team Aq Mt support@procurs.us .
@@ -125,6 +126,6 @@ was written with the Python Programming Language by
 .An TheRealKeto Aq Mt therealketo@gmail.com .
 .Sh BUGS
 With the
-.Fl k , -certificate
+.Fl k , -cert
 flag, certificates whose passphrase is anything other than
 "password" will not be accepted.
