@@ -15,9 +15,9 @@ python = "^3.8"
 docopt = "^0.6.2"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^0.991"
+mypy = "^1.2.0"
 flake8 = "^5.0.4"
-pyright = "^1.1.280"
+pyright = "^1.1.304"
 types-docopt = "^0.6.11.3"
 
 [tool.poetry.build]
