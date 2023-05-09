@@ -15,9 +15,9 @@ from .utils import (
 
 
 def permasign(
-    ipa_file: str,
-    ents: str,
-    cert: str,
+    ipa_file: pathlib.Path,
+    ents: pathlib.Path,
+    cert: pathlib.Path,
     *,
     zip_after: bool = False
 ) -> None:
@@ -26,16 +26,11 @@ def permasign(
     print("[*] Checking for dependencies...")
     ldid = find_tool("ldid")
 
-    working_dir = pathlib.Path(".").resolve()
-    application = working_dir / ipa_file
-    entitlements = working_dir / ents
-    certificate = working_dir / cert
-
     # Create a temp folder to keep things clean
     # then, extract the given IPA file to it...
-    (tmp := working_dir / "tmp").mkdir(exist_ok=True)
-    print(f"[*] Extracting {application}")
-    with ZipFile(application, "r") as ziparchive:
+    (tmp := pathlib.Path("tmp")).mkdir(exist_ok=True)
+    print(f"[*] Extracting {ipa_file}")
+    with ZipFile(ipa_file, "r") as ziparchive:
         ziparchive.extractall(tmp)
 
     # Find extracted application in tmp folder
@@ -46,9 +41,9 @@ def permasign(
     print(f"[*] Signing {found_app} with ldid")
     subprocess.run([
         str(ldid),
-        f"-S{entitlements}",
+        f"-S{ents}",
         "-M",
-        f"-K{certificate}",
+        f"-K{cert}",
         "-Upassword",
         str(found_app)
     ])
@@ -70,4 +65,4 @@ def permasign(
         # Using shutil is the only to do it, sadly
         shutil.rmtree(app_rpath, ignore_errors=True)
 
-    print(f"Successfully permasigned {application}!")
+    print(f"Successfully permasigned {ipa_file}!")

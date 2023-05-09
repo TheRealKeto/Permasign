@@ -13,6 +13,7 @@ Options:
 
 """
 
+import pathlib
 import permasign
 
 from docopt import docopt
@@ -21,9 +22,9 @@ from docopt import docopt
 def cli() -> None:
     args = docopt(__doc__, version=permasign.__version__)
 
-    ipa = args["--ipa"]
-    ents = args["--ents"]
-    cert = args["--cert"]
+    ipa = pathlib.Path(args["--ipa"])
+    ents = pathlib.Path(args["--ents"])
+    cert = pathlib.Path(args["--cert"])
     z_after = args["--zip"]
 
     permasign.permasign(ipa, ents, cert, zip_after=z_after)
