@@ -23,8 +23,8 @@ def find_tool(tool: str, /) -> Union[str, pathlib.Path]:
 
     # If tool is not in PATH, check working dir
     # Using pathlib, we can check if tool exists
-    available_local = pathlib.Path(".").resolve() / tool
-    if not available_local.exists():
+    available_local = pathlib.Path(tool)
+    if not available_local.is_file():
         sys.exit(f"Could not find {tool} locally or in PATH")
 
     return available_local
