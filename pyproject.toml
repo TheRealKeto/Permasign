@@ -15,10 +15,10 @@ python = "^3.8"
 docopt = "^0.6.2"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.2.0"
-pyright = "^1.1.304"
-ruff = "^0.0.262"
-types-docopt = "^0.6.11.3"
+mypy = "^1.10.1"
+pyright = "^1.1.369"
+ruff = "^0.5.0"
+types-docopt = "^0.6.11.4"
 
 [tool.poetry.build]
 generate-setup-file = true
