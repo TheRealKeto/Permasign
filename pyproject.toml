@@ -34,7 +34,7 @@ ignore = [
 ]
 pythonVersion = "3.8"
 
-[tool.ruff]
+[tool.ruff.lint]
 select = [
    "E",
    "F",
@@ -43,8 +43,10 @@ select = [
    "Q",
    "PTH"
 ]
-line-length = 65
-show-source = true
+
+[tool.ruff]
+line-length = 70
+output-format = "full"
 target-version = "py38"
 
 [build-system]
